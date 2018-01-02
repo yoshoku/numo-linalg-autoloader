@@ -2,11 +2,9 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
-
-
 Gem::Specification.new do |spec|
   spec.name          = 'numo-linalg-autoloader'
-  spec.version       = '0.1.0'
+  spec.version       = '0.1.1'
   spec.authors       = ['yoshoku']
   spec.email         = ['yoshoku@outlook.com']
   spec.summary       = <<MSG
@@ -19,9 +17,9 @@ Numo::Linalg::Autoloader is a class that
 loads backend libraries automatically
 according to an execution environment.
 The library is confirmed to work with
-IntelMKL and OpenBLAS (installed from source)
+Intel MKL and OpenBLAS (installed from source)
 on macOS, Ubuntu, and CentOS.
-In addition, the library currently does not support ATLAS.
+Moreover, the library currently does not support ATLAS.
 Note that the library is made for personal convenience
 and has no direct relationships with the Ruby/Numo project.
 MSG
@@ -39,7 +37,6 @@ MSG
   spec.required_ruby_version = '>= 2.1'
 
   spec.add_runtime_dependency 'numo-linalg', '~> 0.1.0'
-  spec.add_runtime_dependency 'numo-narray', '~> 0.9.0'
 
   spec.add_development_dependency 'bundler', '~> 1.16'
   spec.add_development_dependency 'rake', '~> 10.0'
