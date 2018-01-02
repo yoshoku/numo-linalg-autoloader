@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/yoshoku/numo-linalg-autoloader.svg?branch=master)](https://travis-ci.org/yoshoku/numo-linalg-autoloader)
 [![Gem Version](https://badge.fury.io/rb/numo-linalg-autoloader.svg)](https://badge.fury.io/rb/numo-linalg-autoloader)
 
-Numo::Linalg::Autoloader is a class that loads backend libraries automatically
+Numo::Linalg::Autoloader is a module that has a method loading backend libraries automatically
 according to an execution environment.
 The library is confirmed to work with Intel MKL and OpenBLAS (installed from source)
 on macOS, Ubuntu, and CentOS.

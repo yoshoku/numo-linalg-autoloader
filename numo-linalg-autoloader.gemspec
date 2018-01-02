@@ -4,17 +4,17 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = 'numo-linalg-autoloader'
-  spec.version       = '0.1.1'
+  spec.version       = '0.1.2'
   spec.authors       = ['yoshoku']
   spec.email         = ['yoshoku@outlook.com']
   spec.summary       = <<MSG
-Numo::Linalg::Autoloader is a class that
-loads backend libraries automatically
+Numo::Linalg::Autoloader is a module that has a method
+loading backend libraries automatically
 according to an execution environment.
 MSG
   spec.description   = <<MSG
-Numo::Linalg::Autoloader is a class that
-loads backend libraries automatically
+Numo::Linalg::Autoloader is a module that has a method
+loading backend libraries automatically
 according to an execution environment.
 The library is confirmed to work with
 Intel MKL and OpenBLAS (installed from source)
