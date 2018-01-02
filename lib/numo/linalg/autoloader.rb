@@ -10,7 +10,17 @@ module Numo
     # @example
     #   requre 'numo/linalg/autoloader'
     class Autoloader
+      # @!visibility private
+      @@libs = []
+
       class << self
+        # Return the list of loaded backend libraries.
+        #
+        # @return [Array<String>] list of loaded backend libraries
+        def libs
+          @@libs
+        end
+
         # Load backend libraries for Numo::Linalg automatically.
         #
         # @return [String] name of loaded backend library (mkl/openblas/lapack)
@@ -26,14 +36,18 @@ module Numo
           openblas_libs = find_openblas_libs([*base_dirs, *opt_dirs, *openblas_dirs])
           lapack_libs = find_lapack_libs([*base_dirs, *opt_dirs, *lapacke_dirs])
 
+          @@libs = []
           if !mkl_libs.value?(nil)
             open_mkl_libs(mkl_libs)
+            @@libs = mkl_libs.values
             'mkl'
           elsif !openblas_libs.value?(nil)
             open_openblas_libs(openblas_libs)
+            @@libs = openblas_libs.values
             'openblas'
           elsif !lapack_libs.value?(nil)
             open_lapack_libs(lapack_libs)
+            @@libs = lapack_libs.values
             'lapack'
           else
             raise 'cannot find MKL/OpenBLAS/ATLAS/BLAS-LAPACK library'
