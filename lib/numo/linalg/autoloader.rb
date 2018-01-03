@@ -28,6 +28,8 @@ module Numo
       def load_library
         mkl_dirs = ['/opt/intel/lib', '/opt/intel/mkl/lib']
         openblas_dirs = ['/opt/openblas/lib', '/usr/local/opt/openblas/lib']
+        atlas_dirs = ['/opt/atlas/lib', '/opt/atlas/lib64',
+                      '/usr/lib/atlas', '/usr/lib64/atlas', '/usr/local/opt/atlas/lib']
         lapacke_dirs = ['/opt/lapack/lib', '/usr/local/opt/lapack/lib']
         opt_dirs =  ['/opt/local/lib', '/opt/local/lib64', '/opt/lib', '/opt/lib64']
         base_dirs = ['/usr/local/lib', '/usr/local/lib64', '/usr/lib', '/usr/lib64']
@@ -35,6 +37,7 @@ module Numo
 
         mkl_libs = find_mkl_libs([*base_dirs, *opt_dirs, *mkl_dirs])
         openblas_libs = find_openblas_libs([*base_dirs, *opt_dirs, *openblas_dirs])
+        atlas_libs = find_atlas_libs([*base_dirs, *opt_dirs, *atlas_dirs])
         lapack_libs = find_lapack_libs([*base_dirs, *opt_dirs, *lapacke_dirs])
 
         @@libs = nil
@@ -46,6 +49,10 @@ module Numo
           open_openblas_libs(openblas_libs)
           @@libs = openblas_libs.values
           'openblas'
+        elsif !atlas_libs.value?(nil)
+          open_atlas_libs(atlas_libs)
+          @@libs = atlas_libs.values
+          'atlas'
         elsif !lapack_libs.value?(nil)
           open_lapack_libs(lapack_libs)
           @@libs = lapack_libs.values
@@ -85,6 +92,17 @@ module Numo
         find_libs(lib_names, lib_dirs)
       end
 
+      def find_atlas_libs(lib_dirs)
+        lib_names = %w[tatlas atlas satlas cblas lapacke]
+        atlas_libs = find_libs(lib_names, lib_dirs)
+        atlas_libs[:atlas] = atlas_libs[:tatlas] unless atlas_libs[:tatlas].nil?
+        atlas_libs[:atlas] = atlas_libs[:satlas] if atlas_libs[:atlas].nil?
+        atlas_libs[:cblas] = atlas_libs[:atlas] if atlas_libs[:cblas].nil?
+        atlas_libs.delete(:tatlas)
+        atlas_libs.delete(:satlas)
+        atlas_libs
+      end
+
       def find_lapack_libs(lib_dirs)
         lib_names = %w[blas lapack lapacke]
         find_libs(lib_names, lib_dirs)
@@ -104,6 +122,12 @@ module Numo
         Numo::Linalg::Lapack.dlopen(openblas_libs[:openblas])
       end
 
+      def open_atlas_libs(atlas_libs)
+        Fiddle.dlopen(atlas_libs[:atlas])
+        Numo::Linalg::Blas.dlopen(atlas_libs[:cblas])
+        Numo::Linalg::Lapack.dlopen(atlas_libs[:lapacke])
+      end
+
       def open_lapack_libs(lapack_libs)
         Fiddle.dlopen(lapack_libs[:blas])
         Fiddle.dlopen(lapack_libs[:lapack])
@@ -112,8 +136,8 @@ module Numo
       end
 
       private_class_method :detect_library_extension,
-                           :find_libs, :find_mkl_libs, :find_openblas_libs, :find_lapack_libs,
-                           :open_mkl_libs, :open_openblas_libs, :open_lapack_libs
+                           :find_libs, :find_mkl_libs, :find_openblas_libs, :find_atlas_libs, :find_lapack_libs,
+                           :open_mkl_libs, :open_openblas_libs, :open_atlas_libs, :open_lapack_libs
     end
   end
 end
