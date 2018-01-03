@@ -7,7 +7,6 @@ Numo::Linalg::Autoloader is a module that has a method loading backend libraries
 according to an execution environment.
 The library is confirmed to work with Intel MKL and OpenBLAS (installed from source)
 on macOS, Ubuntu, and CentOS.
-Moreover, the library currently does not support ATLAS.
 
 If you want to set the backend library yourself,
 you should refear to the [official document](https://github.com/ruby-numo/linalg/blob/master/doc/select-backend.md).

@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = 'numo-linalg-autoloader'
-  spec.version       = '0.1.2'
+  spec.version       = '0.1.3'
   spec.authors       = ['yoshoku']
   spec.email         = ['yoshoku@outlook.com']
   spec.summary       = <<MSG
@@ -19,7 +19,6 @@ according to an execution environment.
 The library is confirmed to work with
 Intel MKL and OpenBLAS (installed from source)
 on macOS, Ubuntu, and CentOS.
-Moreover, the library currently does not support ATLAS.
 Note that the library is made for personal convenience
 and has no direct relationships with the Ruby/Numo project.
 MSG
