@@ -11,7 +11,7 @@ module Numo
     #   requre 'numo/linalg/autoloader'
     module Autoloader
       # @!visibility private
-      @@libs = []
+      @@libs = nil
 
       module_function
 
@@ -37,7 +37,7 @@ module Numo
         openblas_libs = find_openblas_libs([*base_dirs, *opt_dirs, *openblas_dirs])
         lapack_libs = find_lapack_libs([*base_dirs, *opt_dirs, *lapacke_dirs])
 
-        @@libs = []
+        @@libs = nil
         if !mkl_libs.value?(nil)
           open_mkl_libs(mkl_libs)
           @@libs = mkl_libs.values
