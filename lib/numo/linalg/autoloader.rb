@@ -30,14 +30,15 @@ module Numo
         openblas_dirs = ['/opt/openblas/lib', '/opt/openblas/lib64', '/usr/local/opt/openblas/lib']
         atlas_dirs = ['/opt/atlas/lib', '/opt/atlas/lib64',
                       '/usr/lib/atlas', '/usr/lib64/atlas', '/usr/local/opt/atlas/lib']
-        lapacke_dirs = ['/opt/lapack/lib', '/opt/lapack/lib64', '/usr/local/opt/lapack/lib']
+        lapacke_dirs = ['/opt/lapack/lib', '/opt/lapack/lib64',
+                        '/opt/local/lib/lapack', '/usr/local/opt/lapack/lib']
         opt_dirs =  ['/opt/local/lib', '/opt/local/lib64', '/opt/lib', '/opt/lib64']
         base_dirs = ['/usr/local/lib', '/usr/local/lib64', '/usr/lib', '/usr/lib64']
         base_dirs.unshift(*ENV['LD_LIBRARY_PATH'].split(':')) unless ENV['LD_LIBRARY_PATH'].nil?
 
         mkl_libs = find_mkl_libs([*base_dirs, *opt_dirs, *mkl_dirs])
         openblas_libs = find_openblas_libs([*base_dirs, *opt_dirs, *openblas_dirs])
-        atlas_libs = find_atlas_libs([*base_dirs, *opt_dirs, *atlas_dirs])
+        atlas_libs = find_atlas_libs([*base_dirs, *opt_dirs, *atlas_dirs, *lapacke_dirs])
         lapack_libs = find_lapack_libs([*base_dirs, *opt_dirs, *lapacke_dirs])
 
         @@libs = nil
