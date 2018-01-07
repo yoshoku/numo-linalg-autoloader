@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = 'numo-linalg-autoloader'
-  spec.version       = '0.1.3'
+  spec.version       = '0.1.4'
   spec.authors       = ['yoshoku']
   spec.email         = ['yoshoku@outlook.com']
   spec.summary       = <<MSG
