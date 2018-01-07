@@ -11,5 +11,7 @@ before_install:
 addons:
   apt:
     packages:
-    - liblapack-dev
-    - liblapacke-dev
+      - libatlas-base-dev
+      - libopenblas-dev
+      - liblapack-dev
+      - liblapacke-dev

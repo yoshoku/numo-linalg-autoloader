@@ -15,13 +15,13 @@ RSpec.describe Numo::Linalg::Autoloader do
     end
 
     it 'finds OpenBLAS libraries' do
-      openblas_libs = autoloader.send(:find_openblas_libs, ['/usr/local/opt/openblas/lib'])
+      openblas_libs = autoloader.send(:find_openblas_libs, ['/usr/lib', '/usr/local/opt/openblas/lib'])
       expect(openblas_libs[:openblas]).to_not be_nil
       expect(openblas_libs[:lapacke]).to_not be_nil
     end
 
     it 'finds ATLAS libraries' do
-      atlas_libs = autoloader.send(:find_atlas_libs, ['/opt/local/lib'])
+      atlas_libs = autoloader.send(:find_atlas_libs, ['/usr/lib', '/opt/local/lib', '/opt/local/lib/lapack'])
       expect(atlas_libs[:atlas]).to_not be_nil
       expect(atlas_libs[:cblas]).to_not be_nil
       expect(atlas_libs[:lapacke]).to_not be_nil
