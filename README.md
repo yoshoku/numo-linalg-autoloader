@@ -11,11 +11,8 @@ on macOS, Ubuntu, and CentOS.
 If you want to set the backend library yourself,
 you should refear to the [official document](https://github.com/ruby-numo/linalg/blob/master/doc/select-backend.md).
 
-Note that the library is made for personal convenience and has no direct relationships with
-the [Ruby/Numo](https://github.com/ruby-numo/numo/blob/master/README.md) project.
-I would like to express my gratitude to the authors of
-[Numo::NArray](https://rubygems.org/gems/numo-narray) and
-[Numo::Linalg](https://rubygems.org/gems/numo-linalg).
+Note that the library is [merged](https://github.com/ruby-numo/numo-linalg/pull/5) in Numo::Linalg now.
+The Numo::Linalg version on which the library works is only 0.1.0.
 
 ## Installation
 

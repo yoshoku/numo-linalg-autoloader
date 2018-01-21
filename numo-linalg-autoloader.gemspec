@@ -19,8 +19,8 @@ according to an execution environment.
 The library is confirmed to work with
 Intel MKL and OpenBLAS (installed from source)
 on macOS, Ubuntu, and CentOS.
-Note that the library is made for personal convenience
-and has no direct relationships with the Ruby/Numo project.
+Note that the library is merged in Numo::Linalg now.
+The Numo::Linalg version on which the library works is only 0.1.0.
 MSG
   spec.homepage      = 'https://github.com/yoshoku/numo-linalg-autoloader'
   spec.license       = 'BSD-3-Clause'
@@ -35,7 +35,7 @@ MSG
 
   spec.required_ruby_version = '>= 2.1'
 
-  spec.add_runtime_dependency 'numo-linalg', '~> 0.1.0'
+  spec.add_runtime_dependency 'numo-linalg', '= 0.1.0'
 
   spec.add_development_dependency 'bundler', '~> 1.16'
   spec.add_development_dependency 'rake', '~> 10.0'
