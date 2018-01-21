@@ -1,3 +1,6 @@
+# 0.1.5
+- fix documents about dependent Numo::Linalg version
+
 # 0.1.4
 - fix paths of backend libraries for ATLAS and Travis CI
 - add test cases for private methods loading backend libraries
